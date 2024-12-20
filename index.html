@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEAT TECH 3</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+</head>
+<body>
+    <audio id="audio" loop>
+        <source src="./audio/Tate McRae - guilty conscience.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- BT Logo -->
+    <div class="BT" id="btLogo">"BT"</div>
+
+    <div class="beattech" id="beattech">BEAT TECH</div>
+
+    <section class="background section1" id="backgroundSection">
+        <img src="images/greenswirl.jpeg" alt="Background Image">
+        <div id="author">MAIKO HATTA</div>
+
+        <!-- Text Section -->
+        <div class="text-container">
+            <div id="paragraph1">
+                <p>McRae's artistic and creative background in dance might be part of the reason why such an expressive and stylistic font was chosen. The font's movement and fluidity could represent her dynamic stage presence and her ability to seamlessly blend music and dance in her performances.</p>
+            </div>
+            <div id="paragraph2">
+                <p>The Beat Tech font has a vibrant, bold, and playful feel. Since Tate is a rising star within the Gen Z demographic, the font might reflect her youthful, energetic persona and connect with a younger audience. The modern and casual vibe of the font would align with her pop music style, which resonates with today’s teens and young adults.</p>
+            </div>
+        </div>
+    <div class="background" id="background"></div>
+
+    <video id="video1" class="carousel-video" muted preload playsinline>
+        <source src="videos/RPReplay_Final1734553853 2.Mp4" type="video/mp4">
+    </video>
+    <video id="video2" class="carousel-video" muted preload playsinline>
+        <source src="videos/examp1.mp4" type="video/mp4">
+    </video>
+    <video id="video3" class="carousel-video" muted preload playsinline>
+        <source src="videos/examp2.mp4" type="video/mp4">
+    </video>
+    <video id="video4" class="carousel-video" muted preload playsinline>
+        <source src="videos/examp4.mp4" type="video/mp4">
+    </video>
+    <video id="video5" class="carousel-video" muted preload playsinline>
+        <source src="videos/examp5.mp4" type="video/mp4">
+    </video>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const videos = [
+        document.getElementById('video1'),
+        document.getElementById('video2'),
+        document.getElementById('video3'),
+        document.getElementById('video4'),
+        document.getElementById('video5'),
+    ];
+    let currentVideoIndex = 0;
+
+    const audio = document.getElementById('audio');
+    audio.play().catch(err => console.log("Audio play error:", err));
+
+    document.getElementById('background').addEventListener('click', function() {
+        this.style.display = 'none';
+        playCurrentVideo();
+    });
+
+    function playCurrentVideo() {
+        videos[currentVideoIndex].style.display = 'block';
+        videos[currentVideoIndex].play();
+    }
+
+    videos.forEach((video, index) => {
+        video.addEventListener('ended', function() {
+            video.style.display = 'none';  
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length; 
+            playCurrentVideo();  
+        });
+
+        video.addEventListener('click', function() {
+            video.style.display = 'none'; 
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length;  
+            playCurrentVideo();  
+        });
+    });
+
+            const btLogo = document.getElementById('btLogo');
+            let isBTDragging = false;
+            let btOffsetX, btOffsetY;
+
+            btLogo.addEventListener('mousedown', function(e) {
+                isBTDragging = true;
+                btOffsetX = e.clientX - btLogo.getBoundingClientRect().left;
+                btOffsetY = e.clientY - btLogo.getBoundingClientRect().top;
+                btLogo.style.position = 'absolute'; 
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (isBTDragging) {
+                    btLogo.style.left = (e.clientX - btOffsetX) + 'px';
+                    btLogo.style.top = (e.clientY - btOffsetY) + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', function() {
+                isBTDragging = false;
+            });
+
+            const beatTechText = document.getElementById('beattech');
+            beatTechText.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            });
+
+            const textContainer = document.querySelector('.text-container');
+            let isTextContainerHidden = false;
+
+            textContainer.addEventListener('click', function(event) {
+                if (event.target !== document.getElementById('author')) {
+                    if (!isTextContainerHidden) {
+                        textContainer.style.display = 'none';
+                        isTextContainerHidden = true;
+                    }
+                }
+            });
+
+            const authorName = document.getElementById('author');
+            authorName.addEventListener('click', function(event) {
+                event.stopPropagation();
+                if (isTextContainerHidden) {
+                    textContainer.style.display = 'block';
+                    isTextContainerHidden = false;
+                }
+            });
+
+            let videoCount = document.querySelectorAll('.carousel-video').length;
+            let videosPlayed = 0;
+
+            function handleVideoEnd() {
+                videosPlayed++;
+                if (videosPlayed >= videoCount) {
+                    document.querySelector('.background').style.display = 'block'; 
+                    videosPlayed = 0;
+                }
+            }
+
+            document.querySelectorAll('.carousel-video').forEach(video => {
+                video.addEventListener('ended', handleVideoEnd);
+            });
+
+            function hideBackground() {
+                document.querySelector('.background').style.display = 'none'; // 
+            }
+        });
+
+    videos.forEach((video, index) => {
+        video.style.display = 'none';  
+    });
+
+    playCurrentVideo();  
+
+;
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    overflow: hidden; 
+    font-family: Arial, sans-serif; 
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/greenswirl.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    cursor: pointer; 
+}
+
+.carousel-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: none; 
+}
+
+.BT {
+    position: absolute; 
+    top: 10px; 
+    left: -10px; 
+    cursor: grab; 
+    font-family: 'beat_techregular'; 
+    color: white; 
+    font-size: 50px; 
+    z-index: 10; 
+}
+
+.beattech {
+    font-family: 'beat_techline';
+    position: absolute; 
+    top: 10%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    cursor: pointer; 
+    z-index: 10; 
+    color: white; 
+    font-size: 90px; 
+}
+#author {
+    font-family: 'beat_techregular';
+    position: absolute; 
+    top: 20%; 
+    left: 45%; 
+    font-size: 30px; 
+    z-index: 10;
+    color: white; 
+}
+
+
+
+.text-container {
+    position: absolute; 
+    top: 55%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    max-width: 800px; 
+    color: white; 
+    font-size: 24px; 
+    text-align: center; 
+    z-index:10;
+}
+
+
+#paragraph1, #paragraph2 {
+    color: white; 
+    font-size: 24px; 
+    margin: 10px 0; 
+}
+
+@font-face {
+    font-family: 'beat_techregular';
+    src: url('fonts/beattech-reg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'beat_techline';
+    src: url('fonts/beattech-line-webfont.woff2') format('woff2'),
+         url('fonts/beattech-line-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
